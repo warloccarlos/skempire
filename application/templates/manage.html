@@ -1,0 +1,161 @@
+{% extends 'dashTemplate.html' %}
+
+{% block title %} Home - S Khajuria {% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    <div class="row">
+        <div class="col-sm-3 vh-100" id="collapseNavBar" style="background-color: black; display: none;">
+            <div class="container-fluid mt-2 ms-2 p-2 rounded-3 text-center">
+                <ul class="navbar-nav" style="font-family: Exo2-Regular;">
+                    <li class="nav-item itemColor p-2 rounded-2 mb-2" style="border: solid 2px rgb(255, 120, 10);">
+                        <a class="nav-link fontColor"href="{{ url_for('view.addnew') }}">Add New</a>
+                    </li>
+                    <li class="nav-item itemColor p-2 mb-2 rounded-2" style="border: solid 2px rgb(255, 120, 10);">
+                        <a class="nav-link fontColor" href="{{ url_for('view.manage') }}">Manage</a>
+                    </li>
+                    <li class="nav-item itemColor p-2 rounded-2" style="border: solid 2px rgb(255, 120, 10);">
+                        <a class="nav-link fontColor" href="#">Future</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col d-lg-flex ms-4 vh-100 bg-dark text-light d-flex justify-content-center">
+            <div class="col-xl-10 col-lg-8 col-8 border-dark rounded-4">
+                <div class="fs-2 mt-4 mb-4 fontColor rounded-3" style="letter-spacing: 2px; font-family: AmericanCaptain;">Manage Contacts</div>
+                <div class="mt-4 mb-2 w-75">
+                    <table class="table table-hover table-danger table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Company</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in data %}
+                            <tr>
+                                <td>{{ d.name }}</td>
+                                <td>{{ d.type }}</td>
+                                <td>{{ d.phone }}</td>
+                                <td>{{ d.email }}</td>
+                                <td>{{ d.com }}</td>
+                                <td>
+                                    <button type="button" class="btn text-light" style="background-color: rgb(255, 120, 10)"
+                                            data-bs-toggle="modal" data-bs-target="#updateModal{{ d.id }}">
+                                        Edit
+                                    </button>
+
+                                    <div class="modal fade" id="updateModal{{ d.id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="basicModal" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel">Update Contact</h4>
+                                                    <button type="button" class="btn-close border border-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="/update/{{ d.id }}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group row">
+                                                            <label for="author" class="col-xs-2 control-label">Name</label>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" id="author" class="form-control" name="name"
+                                                                    value="{{d.name}}" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="author" class="col-xs-2 control-label">Type</label>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" class="form-control" name="type"
+                                                                    value="{{d.type}}" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="author" class="col-xs-2 control-label">Phone</label>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" class="form-control" name="phone"
+                                                                    value="{{d.phone}}" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="author" class="col-xs-2 control-label">Email</label>
+                                                            <div class="col-xs-10">
+                                                                <input type="email" class="form-control" name="email"
+                                                                    value="{{d.email}}" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="author" class="col-xs-2 control-label">Company</label>
+                                                            <div class="col-xs-10">
+                                                                <input type="text" class="form-control" name="com"
+                                                                    value="{{d.com}}" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn text-light" style="background-color: rgb(255, 120, 10);">
+                                                            Update
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn text-light" style="background-color: rgb(255, 120, 10)"
+                                            data-bs-toggle="modal" data-bs-target="#delModal{{ d.id }}">
+                                        <a href="#" class="d-inline-block" data-bs-toggle="tooltip" title="Delete">
+                                            <img src="../static/icons/icons8-delete.svg" />
+                                        </a>
+                                    </button>
+                                    <!-- Delete Modal -->
+                                    <div class="modal fade" id="delModal{{ d.id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="basicModal" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel">Delete Contact</h4>
+                                                    <button type="button" class="btn-close border border-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="/delcon/{{ d.id }}" method="post">
+                                                    <div class="modal-body">
+                                                        <div class="form-group row">
+                                                            <label for="author" class="col-xs-2 control-label">Are you sure?</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn text-light" style="background-color: rgb(255, 120, 10);">
+                                                            Delete
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+    {{ redirect(url_for('auth.login'))}}
+
+    {% endif %}
+
+{% endblock %}

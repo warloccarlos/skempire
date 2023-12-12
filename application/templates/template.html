@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %} Template - S Khajuria {% endblock %}
+    </title>
+    <script src="{{url_for('static', filename='jquery-3.7.0.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap.js')}}"></script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+    <link rel="stylesheet" href="../static/bootstrap.css">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="bg-dark">
+
+    <script src="{{url_for('static', filename='jquery-3.7.0.js')}}"></script>
+    <script src="{{url_for('static', filename='popper.min.js')}}"></script>
+
+
+    <div class="container-fluid">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{message}}
+                            <button type="button" class="btn rounded-1 close border border-2 border-danger" data-bs-dismiss="alert">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{message}}
+                            <button type="button" class="btn rounded-1 close border border-2 border-danger" data-bs-dismiss="alert">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="row ps-1">
+        <nav class="navbar navbar-expand-lg" style="background-color: rgb(0, 0, 0)">
+            <div class="container-fluid">
+                <a class="navbar-brand fontColor itemColor ms-2" style="font-family: AmericanCaptain; letter-spacing: .2rem;" href="{{ url_for('view.index') }}">
+                    S Khajuria
+                </a>
+                <button class="navbar-toggler me-2" style="background-color: rgb(255, 120, 10);"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav" style="font-family: Exo2-Regular; font-weight: bold">
+                        <li class="nav-item itemColor">
+                            <a class="nav-link fontColor"href="{{ url_for('view.index') }}">Home</a>
+                        </li>
+                        <li class="nav-item itemColor">
+                            <a class="nav-link fontColor" href="{{ url_for('auth.login') }}">Login</a>
+                        </li>
+                        <li class="nav-item itemColor">
+                            <a class="nav-link fontColor" href="{{ url_for('view.about') }}">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-10 rounded-3 container-fluid d-flex justify-content-center align-items-center mt-2 pb-2" style="border: solid 2px rgb(255, 120, 10);">
+            <h1 id="title" class="fontColor" style="font-size: 15vw; font-family: AmericanCaptain;  letter-spacing: 1rem;">
+                S Khajuria
+            </h1>
+        </div>
+        <div class="col d-flex justify-content-center mb-4 pb-3" style="margin-top: -20px;">
+            <sub class="text-nowrap p-3 fw-bold rounded-3 fontColor text-uppercase" style="font-size: 11px; border: solid 1px rgb(255, 120, 10); letter-spacing: 0.2rem; background-color: rgb(0, 0, 0); font-family: Arvo-Regular">
+                Programmer | Linux | Tech Enthusiast | Trainer
+            </sub>
+        </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+    
+    <div class="row mt-2">
+        <footer class="text-center text-white" style="background-color: rgba(0, 0, 0, 0.8); font-family: Arvo-Regular">
+            <!-- Grid container -->
+            <div class="container">
+              <!-- Section: Links -->
+              <section class="mt-5">
+                <!-- Grid row-->
+                <div class="row text-center d-flex justify-content-center pt-3">
+                  <!-- Grid column -->
+                  <div class="col-md-2">
+                    <h6 class="font-weight-bold">
+                      <a href="https://www.hashstash.co.in" style="text-decoration: none" class="text-light">HashStash</a>
+                    </h6>
+                  </div>
+                  <!-- Grid column -->
+
+                  <!-- Grid column -->
+                  <div class="col-md-2">
+                    <h6 class="font-weight-bold">
+                      <a href="https://github.com/warloccarlos" style="text-decoration: none" class="text-light">GitHub Profile</a>
+                    </h6>
+                  </div>
+                  <!-- Grid column -->
+
+                  <!-- Grid column -->
+                  <div class="col-md-2">
+                    <h6 class="font-weight-bold">
+                      <a href="http://www.hashstash.co.in/portfolio/" style="text-decoration: none" class="text-light">Portfolio</a>
+                    </h6>
+                  </div>
+                  <!-- Grid column -->
+
+                  <!-- Grid column -->
+                  <div class="col-md-2">
+                    <h6 class="font-weight-bold">
+                      <a href="#!" style="text-decoration: none" class="text-light">Contact</a>
+                    </h6>
+                  </div>
+                  <!-- Grid column -->
+
+                  <!-- Grid column -->
+                  <div class="col-md-2">
+                    <h6 class="font-weight-bold">
+                      <a href="#!" style="text-decoration: none" class="text-light">About</a>
+                    </h6>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row-->
+              </section>
+              <!-- Section: Links -->
+
+              <!--<hr class="my-5" />-->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3 fontColor" style="background-color: rgba(0, 0, 0, 0.2)">
+              © 2020 S K Empire
+            </div>
+            <!-- Copyright -->
+      </footer>
+    </div>
+    
+</body>
+</html>

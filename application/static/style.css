@@ -1,0 +1,62 @@
+@font-face{
+    font-family: shareTech;
+    src: url('../static/ShareTechmono.ttf');
+}
+@font-face {
+    font-family: Ddense;
+    src: url('../static/Dense.otf');
+}
+@font-face {
+    font-family: AurulentSans;
+    src: url('../static/AurulentSans.otf');
+}
+@font-face {
+    font-family: AmericanCaptain;
+    src: url('../static/AmericanCaptain.otf');
+}
+@font-face {
+    font-family: Arvo-Bold;
+    src: url('../static/Arvo-Bold.ttf');
+}
+@font-face {
+    font-family: Arvo-Regular;
+    src: url('../static/Arvo-Regular.ttf');
+}
+@font-face {
+    font-family: Bison-Bold;
+    src: url('../static/Bison-Bold.ttf');
+}
+@font-face {
+    font-family: Quartzo;
+    src: url('../static/Quartzo.otf');
+}
+@font-face {
+    font-family: Exo2-Regular;
+    src: url('../static/Exo2-Regular.ttf');
+}
+@font-face {
+    font-family: Exo2-Thin;
+    src: url('../static/Exo2-Thin.ttf');
+}
+@font-face {
+    font-family: Exo2-Bold;
+    src: url('../static/Exo2-Bold.ttf');
+}
+.fontColor{
+    /*color: rgb(200, 50, 40);*/
+    color: rgb(255, 128, 0);
+}
+.itemColor{
+    color: rgb(255, 128, 0);
+}
+.itemColor:hover{
+    background-color: rgb(255, 120, 20);
+    border-radius: 3px;
+    color: rgb(50, 50, 0)
+}
+#title{
+    display: none;
+}
+#pen, #tester, #ap, #dso, #csp, #web, #dev{
+    display: none;
+}

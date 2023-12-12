@@ -1,0 +1,77 @@
+{% extends 'dashTemplate.html' %}
+
+{% block title %} Home - S Khajuria {% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    <div class="row">
+        <div class="col-sm-3 vh-100" id="collapseNavBar" style="background-color: black; display: none;">
+            <div class="container-fluid mt-2 ms-2 p-2 rounded-3 text-center">
+                <ul class="navbar-nav" style="font-family: Exo2-Regular;">
+                    <li class="nav-item itemColor p-2 rounded-2 mb-2" style="border: solid 2px rgb(255, 120, 10);">
+                        <a class="nav-link fontColor"href="{{ url_for('view.addnew') }}">Add New</a>
+                    </li>
+                    <li class="nav-item itemColor p-2 mb-2 rounded-2" style="border: solid 2px rgb(255, 120, 10);">
+                        <a class="nav-link fontColor" href="{{ url_for('view.manage') }}">Manage</a>
+                    </li>
+                    <li class="nav-item itemColor p-2 rounded-2" style="border: solid 2px rgb(255, 120, 10);">
+                        <a class="nav-link fontColor" href="#">Future</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col d-lg-flex justify-content-center ms-4 vh-100 bg-dark text-light">
+            <div class="col-xl-10 col-lg-8 col-sm-6 border-dark rounded-4" style="border-style: solid; border-width: 2px;">
+                <div class="fs-2 mt-4 mb-4 fontColor text-center rounded-3" style="border: solid 2px rgb(255, 120, 10); font-family: AmericanCaptain;">Add New Contact</div>
+                <div class="mt-4 mb-2 w-75">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="mt-4 p-4">
+                            <img src="../static/icons/person-circle.svg" width="128" height="128" />
+                            <div class="mt-2 mb-1">
+                                <input type="file" name="conPic" class="rounded-2" style="background-color: rgb(255, 120, 10)">
+                            </div>
+                        </div>
+                        <div class="row mb-3 fontColor">
+                           <div class="col">
+                               <input type="text" class="form-control" name="fName" placeholder="First Name" required>
+                           </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="lName" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="row mb-3 fontColor">
+                            <div class="col">
+                                <select class="form-control" name="type">
+                                    <option value="default">Choose Type</option>
+                                    <option value="Landline">Landline</option>
+                                    <option value="Mobile">Mobile</option>
+                                    <option value="Home">Home</option>
+                                    <option value="Office">Office</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="conNumber" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 fontColor">
+                            <input type="email" class="form-control" name="conEmail" placeholder="Email">
+                        </div>
+                        <div class="mb-3 fontColor">
+                            <input type="text" class="form-control" name="conCom" placeholder="Company">
+                        </div>
+                        <button type="submit" class="btn text-light" style="background-color: rgb(255, 128, 0);">Add Contact</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+    {{ redirect(url_for('auth.login'))}}
+
+    {% endif %}
+
+{% endblock %}

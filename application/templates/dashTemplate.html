@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %} Template - S Khajuria {% endblock %}
+    </title>
+    <script src="{{url_for('static', filename='jquery-3.7.0.js')}}"></script>
+    <script src="{{url_for('static', filename='popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+    <link rel="stylesheet" href="../static/bootstrap.css">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body class="bg-dark">
+
+    <script src="{{url_for('static', filename='jquery-3.7.0.js')}}"></script>
+
+    <div class="container-fluid">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{message}}
+                            <button type="button" class="btn rounded-1 close border border-2 border-danger" data-bs-dismiss="alert">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{message}}
+                            <button type="button" class="btn rounded-1 close border border-2 border-danger" data-bs-dismiss="alert">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="row ps-1">
+        <nav class="navbar navbar-expand-lg" style="background-color: rgb(0, 0, 0)">
+            <div class="container-fluid">
+                <div class="pe-2">
+                    <button id="sidebarCollapse" type="button" class="btn rounded-2" style="background-color: rgb(255, 120, 10);">
+                        <i class="navbar-toggler-icon"></i>
+                    </button>
+                </div>
+                <a class="navbar-brand fontColor px-1 itemColor" style="font-family: AmericanCaptain; letter-spacing: .2rem;" href="{{ url_for('view.dash') }}">
+                    Contacts
+                </a>
+                <button class="navbar-toggler me-2" style="background-color: rgb(255, 120, 10);" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav fs-6" style="font-family: Exo2-Regular">
+                        <li class="nav-item itemColor">
+                            <a class="nav-link fontColor"href="{{ url_for('view.dash') }}">Dashboard</a>
+                        </li>
+                        <li class="nav-item itemColor">
+                            <a class="nav-link fontColor" href="{{ url_for('view.impexp') }}">Import/Export</a>
+                        </li>
+                        <li class="nav-item dropdown itemColor float-end">
+                            <a class="nav-link dropdown-toggle fontColor" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.name }}
+                            </a>
+                            <ul class="dropdown-menu fontColor" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item itemColor" href="{{url_for('auth.logout')}}">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

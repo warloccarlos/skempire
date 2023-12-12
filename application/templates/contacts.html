@@ -1,0 +1,50 @@
+{% extends 'dashTemplate.html' %}
+
+{% block title %} Home - S Khajuria {% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    <div class="row">
+        <div class="col-sm-3 vh-100" id="collapseNavBar" style="background-color: black; display: none;">
+            <div class="container-fluid mt-2 ms-2 p-2 rounded-3 text-center">
+                <ul class="navbar-nav" style="font-family: Exo2-Regular;">
+                        <li class="nav-item itemColor p-2 mb-2 rounded-2" style="border: solid 2px rgb(255, 120, 10);">
+                            <a class="nav-link fontColor"href="{{ url_for('view.addnew') }}">Add New</a>
+                        </li>
+                        <li class="nav-item itemColor p-2 mb-2 rounded-2" style="border: solid 2px rgb(255, 120, 10);">
+                            <a class="nav-link fontColor" href="{{ url_for('view.manage') }}">Manage</a>
+                        </li>
+                        <li class="nav-item itemColor p-2 rounded-2" style="border: solid 2px rgb(255, 120, 10);">
+                            <a class="nav-link fontColor" href="#">Future</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <div class="col vh-100 bg-dark text-light m-2 rounded-3 d-flex justify-content-center">
+            <div class="col-xl-8 col-lg-6 col-sm-6 mt-4 ms-4 border-dark rounded-4">
+                <div class="fontColor mt-4 mb-4 text-uppercase text-center fs-2" style="letter-spacing: 2px; font-family: AmericanCaptain;">
+                    Contacts List
+                </div>
+                {% for d in data %}
+                    <div class="row mt-1 p-1 rounded-4" style="border-bottom: solid 2px rgb(255, 120, 10)">
+                        <div class="col-sm-1 fontColor">
+                            <img src="data:image/png;base64,{{ data[d] }}" width="60px" height="60px;" style="border: 1px solid; border-radius: 30px;" alt="Profile Pic" />
+                        </div>
+                        <div class="col-sm-4 fontColor mt-3">
+                            {{ d }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+
+    {{ redirect(url_for('auth.login'))}}
+
+    {% endif %}
+
+{% endblock %}

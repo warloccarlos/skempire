@@ -1,0 +1,32 @@
+{% extends 'template.html' %}
+
+{% block title %} Login - S Khajuria {% endblock %}
+
+{% block content %}
+<div class="row m-4 p-4">
+    <div class="col-lg-6" style="background-color: rgb(0, 0, 0); border-top-right-radius: 4rem; border-bottom-right-radius: 4rem;">
+        <h1 class="text-center fontColor mt-3 pt-3" style="font-family: Arvo-Bold; font-size: 8vw;">
+            Contacts <br />Login
+        </h1>
+    </div>
+    <div class="col-lg-6">
+        <div class="col-xl-10 col-lg-8 mt-3">
+            <form method="POST" class="ps-4">
+                <div class="mb-3 fontColor">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="userEmail" required aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3 fontColor">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="userPass" required id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn text-light" style="background-color: rgb(255, 128, 0);">Log in</button>
+            </form>
+        </div>
+        <div class="text-light m-5" style="font-family: Arvo-Regular">Don't have an account? &nbsp;&nbsp;
+                <a href="{{ url_for('auth.signup') }}" class="fontColor" style="text-decoration: none;">Sign Up </a>here
+        </div>
+    </div>
+</div>
+{% endblock %}
