@@ -20,6 +20,8 @@ class Contacts(db.Model, UserMixin):
     email = db.Column(db.String(150))
     com = db.Column(db.String(150))
     pic_name = db.Column(db.String(150))
-    pic = db.Column(db.LargeBinary)
+    pic_path = db.Column(db.String(150))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
 

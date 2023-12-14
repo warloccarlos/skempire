@@ -1,4 +1,6 @@
 import base64
+import os
+import csv
 from flask import Blueprint, redirect, url_for, render_template, request, flash, send_file
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
@@ -7,10 +9,12 @@ from .models import Contacts
 
 view = Blueprint('view', __name__)
 
+IMAGE_DIR = 'C:\\Users\\DieTer HellStorm\\Documents\\skempire\\application\\static\\images'
+
 
 @view.route('/')
 def index():
-    return redirect(url_for('auth.login'))
+    return render_template('index.html')
 
 
 @view.route('/dash')
@@ -18,16 +22,7 @@ def index():
 def dash():
     user = current_user.id
     contacts = Contacts.query.filter_by(user_id=user).all()
-    images = []
-    names = []
-    data = {}
-    for c in contacts:
-        names.append(c.name)
-        image_data = c.pic
-        image = base64.b64encode(image_data).decode('ASCII')
-        images.append(image)
-    data = dict(zip(names, images))
-    return render_template('contacts.html', user=current_user, data=data)
+    return render_template('contacts.html', user=current_user, data=contacts)
 
 
 @view.route('/manage', methods=['GET', 'POST'])
@@ -38,15 +33,15 @@ def manage():
     return render_template('manage.html', user=current_user, data=contacts)
 
 
-@view.route('/update/<id>', methods=['POST'])
-def update(id):
+@view.route('/update/<uid>', methods=['POST'])
+def update(uid):
     if request.method == 'POST':
         name = request.form.get('name')
         typ = request.form.get('type')
         phone = request.form.get('phone')
         email = request.form.get('email')
         com = request.form.get('com')
-        data = Contacts.query.filter_by(id=id).first()
+        data = Contacts.query.filter_by(id=uid).first()
         data.name = name
         data.type = typ
         data.phone = phone
@@ -81,7 +76,10 @@ def addnew():
         pic = request.files['conPic']
         if pic:
             pic_name = secure_filename(pic.filename)
-        new_contact = Contacts(name=name, type=type, phone=phone, email=email, com=com, pic_name=pic_name, pic=pic.read(), user_id=user_id)
+            pic_savename = "images/"+pic_name
+            pic_path = os.path.join(IMAGE_DIR, pic_name)
+            pic.save(pic_path)
+        new_contact = Contacts(name=name, type=type, phone=phone, email=email, com=com, pic_name=pic_savename, pic_path=pic_path, user_id=user_id)
         db.session.add(new_contact)
         db.session.commit()
         flash('Contact saved', category='success')
@@ -93,6 +91,36 @@ def addnew():
 def about():
     return render_template('about.html')
 
+
 @view.route('/impexp', methods=['GET', 'POST'])
 def impexp():
+    if request.method == 'POST':
+        fileN = request.form.get('fileName')
+        fileName = fileN+'.csv'
+        csv_data = "Name, Type, Phone, Email, Company, \n"
+        contacts = Contacts.query.filter_by(user_id=current_user.id).all()
+        for c in contacts:
+            csv_data += f"{c.name}, {c.type}, {c.phone}, {c.email}, {c.com}, \n"
+        with open(fileName, "w") as csv_file:
+            csv_file.write(csv_data)
+        return send_file('../'+fileName, as_attachment=True, download_name=fileName)
     return render_template('impexp.html', user=current_user)
+
+
+@view.route('/import', methods=['POST'])
+def importfile():
+    if request.method == 'POST':
+        uploadFile = request.files['upload_file']
+        filename = secure_filename(uploadFile.filename)
+        path = os.path.join(UPLOAD_DIR, filename)
+        uploadFile.save(path)
+        with open(os.path.join(UPLOAD_DIR, filename), 'r') as file:
+            reader = csv.reader(file)
+            header = next(reader)
+            for read in reader:
+                new_con = Contacts(name=read[0], type=read[1], phone=read[2], email=read[3], com=read[4], user_id=current_user.id)
+                db.session.add(new_con)
+                db.session.commit()
+            flash('Data Imported', category='success')
+            return redirect(url_for('view.impexp'))
+    return redirect(url_for('view.impexp'))
