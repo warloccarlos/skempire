@@ -1,0 +1,97 @@
+{% extends 'template.html' %}
+
+{% block title %} Home - S Khajuria {% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid row">
+        <div class="col-8 rounded-4">
+            <div class="row ms-3">
+                <div class="col-sm-3 d-flex justify-content-center align-items-center text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p style="font-family: Arvo-Bold; font-size: 5rem;">VAPT</p>
+                </div>
+                <div class="col-sm-5 text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p style="font-family: Arvo-Bold; font-size: 4rem;">Pen <br /> Testing</p>
+                </div>
+                <div class="col text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p style="font-family: Arvo-Bold; font-size: 3rem;">Application Security Testing</p>
+                </div>
+            </div>
+            <div class="row ms-3 mt-2">
+                <div class="col-sm-4 text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p style="font-family: Arvo-Bold; font-size: 3rem;">Lead Auditor - <br /> ISO-27001 </p>
+                </div>
+                <div class="col-sm-3 d-flex justify-content-center align-items-center text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p style="font-family: Arvo-Bold; font-size: 3rem;">Threat Analysis</p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p style="font-family: Arvo-Bold; font-size: 3rem;">Automation <br />Scripting</p>
+                </div>
+            </div>
+            <div class="row ms-3 mt-2">
+                <div class="col-sm-2 text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p class="mt-4" style="font-family: Arvo-Bold; font-size: 2rem;">Burp Suite</p>
+                    <p class="mt-4" style="font-family: Arvo-Bold; font-size: 2rem;">Nmap</p>
+                </div>
+                <div class="col text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p class="mt-2" style="font-family: Arvo-Bold; font-size: 3rem;">Risk Analysis</p>
+                    <p class="mt-2" style="font-family: Arvo-Bold; font-size: 2rem;">Kali Linux</p>
+                </div>
+                <div class="col-sm-3 text-light me-1 p-1 fs-4 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p class="mt-4" style="font-family: Arvo-Bold; font-size: 3rem;">Nexpose</p>
+                    <p style="font-family: Arvo-Bold; font-size: 3rem;">AppScan</p>
+                </div>
+                <div class="col-sm-3 text-light me-1 p-1 fs-2 text-center rounded-4" style="border: solid 2px rgb(255, 150, 30);">
+                    <p class="mt-4" style="font-family: Arvo-Bold; font-size: 2rem;">API Security</p>
+                    <p style="font-family: Arvo-Bold; font-size: 3rem;">Mobile Security</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 position-relative float-end rounded-4"
+             style="background-color: rgb(255, 150, 20); border: solid 3px rgb(255, 150, 20);">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="" style="width: 140px; height: 140px; border-radius: 70px;">
+                    <div class="">
+                        <img src="{{ url_for('static', filename='images/Profile_Pic.png') }}"
+                             style="width: 120px; height: 120px; border-radius: 60px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <h1 class="fs-4 text-light p-4" style="font-family: Arvo-Bold;">
+                    Hi, I am <br /> S Khajuria
+                </h1>
+                <div class="col mt-4">
+                    <div class="row mt-4 p-2">
+                        <div class="col bg-dark p-2 d-flex justify-content-center align-items-center text-center text-light" style="font-size: 2rem; font-family: Arvo-Bold; border-radius: 5px;">
+                            <h1 class="fs-4">Web Developer</h1>
+                        </div>
+                        <div class="col-sm-3"></div>
+                        <div class="col bg-dark ms-2 p-2 d-flex justify-content-center align-items-center text-center text-light" style="font-size: 2rem; font-family: Arvo-Bold; border-radius: 5px;">
+                            <h1 class="fs-4">Security Trainer</h1>
+                        </div>
+                    </div>
+                    <div class="row mt-2 p-2">
+                        <div class="col bg-dark p-2 text-center text-light"
+                             style="font-family: Arvo-Bold; border-radius: 5px;">
+                            <h1 class="fs-5 p-3">Solo Contributor</h1>
+                            <h1 class="fs-5 position-relative float-start p-3">Team Player</h1>
+                            <h1 class="fs-5 position-relative float-end p-3">Tenacious</h1>
+                            <h1 class="fs-5 p-3">Versatile</h1>
+                        </div>
+                    </div>
+                    <div class="row mt-2 p-2">
+                        <div class="col bg-dark p-2 text-center text-light"
+                             style="font-family: Arvo-Bold; border-radius: 5px;">
+                            <h1 class="fs-5 position-relative float-start p-2"><img src="{{ url_for('static', filename='icons/telephone-fill.svg') }}"  />&nbsp;&nbsp; 8708220701</h1>
+                            <h1 class="fs-5 p-2"><img src="{{ url_for('static', filename='icons/geo-alt-fill.svg') }}"  />&nbsp;&nbsp; Sohna, Gurgaon</h1>
+                            <h1 class="fs-5 position-relative float-start p-2"><img src="{{ url_for('static', filename='icons/envelope-at-fill.svg') }}"  />&nbsp;&nbsp; sandykhajuria@gmail.com</h1>
+                            <h1 class="fs-5 position-relative float-start p-2"><img src="{{ url_for('static', filename='icons/globe-central-south-asia.svg') }}"  />&nbsp;&nbsp; SKhajuria.pythonanywhere.com</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

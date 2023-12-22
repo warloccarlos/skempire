@@ -17,6 +17,11 @@ def index():
     return render_template('index.html')
 
 
+@view.route('/portfolio')
+def portfolio():
+    return render_template('portfolio.html')
+
+
 @view.route('/dash')
 @login_required
 def dash():
@@ -41,12 +46,24 @@ def update(uid):
         phone = request.form.get('phone')
         email = request.form.get('email')
         com = request.form.get('com')
+        pic = request.files['pic']
+        if pic:
+            pic_name = secure_filename(pic.filename)
+            pic_savename = "images/" + pic_name
+            pic_path = os.path.join(IMAGE_DIR, pic_name)
+            pic.save(pic_path)
+        else:
+            row = Contacts.query.filter_by(id=uid).first()
+            pic_savename = row.pic_name
+            pic_path = row.pic_path
         data = Contacts.query.filter_by(id=uid).first()
         data.name = name
         data.type = typ
         data.phone = phone
         data.email = email
         data.com = com
+        data.pic_name = pic_savename
+        data.pic_path = pic_path
         db.session.commit()
         flash('Contact updated', category='success')
     return redirect(url_for('view.manage'))

@@ -22,17 +22,17 @@
             {% if messages %}
                 {% for category, message in messages %}
                     {% if category == 'error' %}
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alert-danger bg-danger alert-dismissible fw-bold fontColor fade show" role="alert">
                             {{message}}
-                            <button type="button" class="btn rounded-1 close border border-2 border-danger" data-bs-dismiss="alert">
-                                <span aria-hidden="true">X</span>
+                            <button type="button" style="margin-top: -25px;" class="btn rounded-1 text-danger close fs-1 position-relative float-end" data-bs-dismiss="alert">
+                                <span aria-hidden="true">&times</span>
                             </button>
                         </div>
                     {% else %}
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div class="alert alert-success bg-success alert-dismissible fw-bold fontColor fade show" role="alert">
                             {{message}}
-                            <button type="button" class="btn rounded-1 close border border-2 border-danger" data-bs-dismiss="alert">
-                                <span aria-hidden="true">X</span>
+                            <button type="button" style="margin-top: -25px;" class="btn rounded-1 text-danger position-relative fs-1 float-end close" data-bs-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                     {% endif %}
