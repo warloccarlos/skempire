@@ -14,7 +14,7 @@ IMAGE_DIR = 'C:\\Users\\DieTer HellStorm\\Documents\\skempire\\application\\stat
 
 @view.route('/')
 def index():
-    return render_template('index.html')
+    return redirect(url_for('auth.login'))
 
 
 @view.route('/portfolio')
