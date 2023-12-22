@@ -9,7 +9,7 @@ from .models import Contacts
 
 view = Blueprint('view', __name__)
 
-IMAGE_DIR = 'C:\\Users\\DieTer HellStorm\\Documents\\skempire\\application\\static\\images'
+IMAGE_DIR = 'Absolute:\\ Path\\On Windows\\If on Windows'
 
 
 @view.route('/')
